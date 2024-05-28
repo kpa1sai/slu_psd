@@ -1,1 +1,1 @@
-This is a part of in-class activity.
+This is a part of in-class activity. Added few lines to text file 2.
