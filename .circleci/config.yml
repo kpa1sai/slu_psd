@@ -3,11 +3,11 @@ version: 2.1
 jobs:
   build_and_push:
     docker:
-      - image: cimg/python:3.8
+      - image: cimg/python:3.8  # Updated to CircleCI's recommended image
     steps:
-      - checkout
+      - checkout  # Checkout the code from your repository
       - setup_remote_docker:
-          version: 19.03.13
+          version: 19.03.12  # Ensure to use a stable version; can also use 'default'
       - run:
           name: Build Docker Image
           command: |
@@ -20,6 +20,7 @@ jobs:
           name: Push Docker Image to Docker Hub
           command: |
             docker push $DOCKERHUB_USERNAME/myapp:${CIRCLE_SHA1}
+
 workflows:
   version: 2
   build_and_deploy:
@@ -27,4 +28,4 @@ workflows:
       - build_and_push:
           filters:
             branches:
-              only: main
+              only: main  # Only run this job on commits to the main branch
